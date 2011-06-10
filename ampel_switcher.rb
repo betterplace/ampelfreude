@@ -4,15 +4,16 @@ class AmpelSwitcher
   GREEN = 1
   RED = 2
   
-  def blink_for_init
+  def self.blink_for_init
     green_off
     red_off
+    sleep(3)
     green_on
     red_on
     sleep(3)
   end
   
-  def set_build_state(status_parser)
+  def self.set_build_state(status_parser)
     return unless(status_parser.state_changed?)
 
     if(status_parser.build_running? && !status_parser.last_build_successful?)
@@ -27,7 +28,7 @@ class AmpelSwitcher
     end
   end
   
-  def set_error_state(status_parser)
+  def self.set_error_state(status_parser)
     AmpelSwitcher.red_off
     AmpelSwitcher.green_off
   end
