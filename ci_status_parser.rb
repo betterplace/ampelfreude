@@ -12,9 +12,20 @@ class CiStatusParser
   
   def update
     doc = Nokogiri::XML(open(uri))
+    @old_state = state
     @project_node = doc.xpath("//Projects/Project[@name='#{project_name}']").first
   rescue
     @project_node = nil
+    @old_state = nil
+  end
+  
+  def state
+    return nil unless @project_node
+    [last_build_successful?, build_running?]
+  end
+  
+  def state_changed?
+    @old_state != state
   end
   
   def last_build_successful?
