@@ -5,8 +5,8 @@ require 'ampel_switcher'
 status_parser = CiStatusParser.new(
   'http://192.168.1.4:8080/cc.xml', 
   'betterplace_ci',
-  '13:19',
-  '13:22'
+  '09:00',
+  '19:00'
   )
 
 AmpelSwitcher.blink_for_init
