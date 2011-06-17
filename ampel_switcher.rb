@@ -16,7 +16,11 @@ class AmpelSwitcher
   def self.set_build_state(status_parser)
     return unless(status_parser.state_changed?)
 
-    if(status_parser.build_running? && !status_parser.last_build_successful?)
+    puts (status_parser.active? ? "ON" : "OFF")
+    if(!status_parser.active?)
+      red_off
+      green_off
+    elsif(status_parser.build_running? && !status_parser.last_build_successful?)
       green_on
       red_on
     elsif(status_parser.last_build_successful?)
@@ -29,6 +33,7 @@ class AmpelSwitcher
   end
   
   def self.set_error_state(status_parser)
+    puts "ERROR"
     AmpelSwitcher.red_off
     AmpelSwitcher.green_off
   end
