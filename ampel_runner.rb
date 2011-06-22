@@ -2,6 +2,8 @@ $: << File.dirname(__FILE__)
 require 'ci_status_parser'
 require 'ampel_switcher'
 
+ENV["TZ"] = "Europe/Rome"
+
 status_parser = CiStatusParser.new(
   'http://192.168.1.4:8080/cc.xml', 
   'betterplace_ci',
