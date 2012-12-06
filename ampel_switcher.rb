@@ -16,14 +16,14 @@ class AmpelSwitcher
   def self.set_build_state(status_parser)
     return unless(status_parser.state_changed?)
 
-    puts (status_parser.active? ? "ON" : "OFF")
-    if(!status_parser.active?)
+    puts status_parser.active? ? "ON" : "OFF"
+    if !status_parser.active?
       red_off
       green_off
-    elsif(status_parser.build_running? && !status_parser.last_build_successful?)
+    elsif status_parser.build_running? && !status_parser.last_build_successful?
       green_on
       red_on
-    elsif(status_parser.last_build_successful?)
+    elsif status_parser.last_build_successful?
       green_on
       red_off
     else
@@ -58,7 +58,7 @@ class AmpelSwitcher
   private
 
   def self.switch_light(socket, value)
-    `/usr/bin/env sispmctl -#{value ? 'o' : 'f'} #{socket}` rescue nil
+    system "/usr/bin/env sispmctl -#{value ? 'o' : 'f'} #{socket}"
   end
 
   def self.nooooooo
