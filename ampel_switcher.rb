@@ -1,9 +1,9 @@
 class AmpelSwitcher
-  
+
   # Ports/number of the power socket for the ligh
   GREEN = 1
   RED = 2
-  
+
   def self.blink_for_init
     green_off
     red_off
@@ -12,7 +12,7 @@ class AmpelSwitcher
     red_on
     sleep(3)
   end
-  
+
   def self.set_build_state(status_parser)
     return unless(status_parser.state_changed?)
 
@@ -27,37 +27,41 @@ class AmpelSwitcher
       green_on
       red_off
     else
+      nooooooo
       red_on
       green_off
     end
   end
-  
+
   def self.set_error_state(status_parser)
     puts "ERROR"
     AmpelSwitcher.red_off
     AmpelSwitcher.green_off
   end
-  
+
   def self.green_on
     switch_light(GREEN, true)
   end
-  
+
   def self.green_off
     switch_light(GREEN, false)
   end
-  
+
   def self.red_on
     switch_light(RED, true)
   end
-  
+
   def self.red_off
     switch_light(RED, false)
   end
-  
+
   private
-  
+
   def self.switch_light(socket, value)
     `/usr/bin/env sispmctl -#{value ? 'o' : 'f'} #{socket}` rescue nil
   end
-  
+
+  def self.nooooooo
+    system "mpg321 /usr/local/ampelfreude/noooo.mp3"
+  end
 end
