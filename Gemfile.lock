@@ -1,10 +1,12 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    daemons (1.0.10)
     nokogiri (1.5.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  daemons
   nokogiri
