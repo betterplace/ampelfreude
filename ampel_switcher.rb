@@ -62,6 +62,7 @@ class AmpelSwitcher
   end
 
   def self.nooooooo
-    system "mpg321 /usr/local/ampelfreude/noooo.mp3"
+    sound_file = File.join(File.dirname(File.expand_path(__FILE__)), 'noooo.mp3');
+    system "mpg321 #{sound_file}"
   end
 end
